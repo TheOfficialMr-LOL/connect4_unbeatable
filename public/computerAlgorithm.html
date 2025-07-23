@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="trademark.jpg" type="image/jpg">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<title>Connect 4 Game</title>
+<link href="/style.css" rel="stylesheet">
+</head>
+
+<body onload="generateBoard(); position_UI();">
+
+    <div id="title"><u>Near Unbeatable Connect 4 AI</u></div><br><br>
+
+    <div id="positionTracker" style="font-weight: bold; position: absolute; font-size: 20px;">State: NaN</div> <br><br>
+    <button id="returnToHome" onclick="window.location.href='/index.html'">Return to home</button>
+    <br>
+    <br>
+    <br>
+    <div id="board-container">
+        <div id="mask-board" style="display: block;"></div>
+        <div id="board"></div>
+            <!-- Clicker overlays will go here -->
+    </div>
+    <br>
+    <div id="winningMessage" style="text-align: center; font-size: 20px; font-weight: bold;">Hello</div>
+    <div id="optionsBar">
+        <div style="font-size: 20px;">Computer: 🔵</div>
+        <button onclick="location.reload()">New Game</button>
+        <div style="font-size: 20px;">Player: 🟠</div>
+    </div>
+
+<script src="scripts/frontend_computer_script.js"></script>
+</body>
+
+
+<footer>
+<a href="https://github.com/TheOfficialMr-LOL" target="_blank" rel="noopener noreferrer">
+    © 2025 Connect 4 AI Project
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub" />
+</a>
+</footer>
+<br>
+<br>
+<br>
+</html>

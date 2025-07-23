@@ -1,0 +1,214 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+	background-color: #f0f0f0;
+}
+
+#title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 35px;
+    margin: 20px 0;
+}
+
+
+#optionsBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: #d8d8d8;
+  padding: 12px 24px;
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 650px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+}
+
+#optionsBar button {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #19118c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  transform: translateX(-10px);
+}
+
+#optionsBar button:hover {
+  background-color: #4468ab;
+}
+
+
+
+
+#board-container {
+    position: relative;
+    width: 700px;
+    height: 600px;
+    margin: auto;
+}
+
+#board {
+    width: 100%;
+    height: 100%;
+    background-color: #23427c;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 1.5%;
+    padding: 2%;
+    box-sizing: border-box;
+    border-radius: 15px;
+    z-index: 1;
+}
+
+#mask-board {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  background-image: url("images/boardMask.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  object-fit: cover;
+
+}
+
+.cell {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: inset 0 0 8px #adadad;
+    z-index: 0;
+}
+
+.column-clicker {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.column-clicker:hover {
+    background-color: rgba(0, 0, 0, 0.123);
+}
+
+
+.falling-piece {
+    border-radius: 50%;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    z-index: 0;
+    animation: drop 0.5s ease-out forwards;
+}
+
+#winningMessage {display: none; animation: pulse 3.0s infinite ease-in-out;}
+
+
+#returnToHome {
+	font-family: 'Poppins', sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	background-color: #19118c;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	padding: 8px 16px;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+	transform: translateX(0px);
+	position: absolute;
+}
+
+#returnToHome:hover {background-color: #4468ab; transform: scale(1.05);}
+
+
+@media screen and (max-width: 770px) {
+    #board-container {
+        width: 90vw;
+        height: calc(90vw * (6 / 7));
+    }
+}
+
+
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.piece-pop {
+  animation: pop-in 300ms ease-out forwards;
+}
+
+/*falling animation from top to target row*/
+@keyframes drop {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(var(--fall-distance));
+  }
+}
+
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+}
+
+
+
+
+footer {
+	position: absolute;
+	text-align: center;
+	position: absolute;
+	left: 0;
+	width: 100%;
+}
+
+footer a {
+	text-decoration: none;
+	color: inherit;
+	font-size: 14px;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+footer img {
+	width: 24px;
+	height: 24px;
+	vertical-align: middle;
+	margin-left: 8px;
+}
