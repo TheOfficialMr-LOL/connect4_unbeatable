@@ -172,7 +172,7 @@ int minimax(int state[42], int currentDepth, int alpha, int beta, MaskArray &mas
     if (currentDepth == 0) {
         return get_score(playerBoard, gameBoard, masks, false) + get_score(computerBoard, gameBoard, masks, true);
     }
-    else if (checkWin(computerBoard)) {return 1000000;}
+    else if (checkWin(computerBoard)) {return 1000000 * (depth + currentDepth);} //multiplying by (depth+currentDepth) to ensure moves played ensure the quickest win
     else if (checkWin(playerBoard)) {return -2000000;}
 
 

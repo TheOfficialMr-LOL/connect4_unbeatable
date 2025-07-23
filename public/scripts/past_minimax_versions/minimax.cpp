@@ -70,7 +70,7 @@ int main() {
 
 
     MaskArray masks = generate_all_4_consecutive_bitmasks();
-    string currentPosition = change_state("4744463621");
+    string currentPosition = change_state("47473621");
 
     int state[42]; fill(state, state + 42, -1); //create empty array of size 42 initialized to -1
     processed_state(state, currentPosition);
@@ -190,7 +190,7 @@ int minimax(int state[42], int currentDepth, int alpha, int beta, MaskArray &mas
     if (currentDepth == 0) {
         return get_score(playerBoard, gameBoard, masks, false) + get_score(computerBoard, gameBoard, masks, true);
     }
-    else if (checkWin(computerBoard)) {return 1000000;}
+    else if (checkWin(computerBoard)) {return 1000000 * (depth + currentDepth);} //multiplying by (depth+currentDepth) to ensure moves played ensure the quickest win
     else if (checkWin(playerBoard)) {return -2000000;}
 
 
