@@ -176,8 +176,17 @@ function move_manager(column) {
         state += (column+1).toString();
         positionTracker.innerHTML = "Position: " + state;
         turn++;
-        
-        getBestColumn();
+
+        //check if game is a draw
+        if (state.length !== 42) {
+            getBestColumn();
+        }
+        else {
+            gameOver = true;
+            let winningMessage = document.getElementById("winningMessage");
+            winningMessage.innerHTML = "It's a draw";
+            winningMessage.style.display = "block";
+        }
     }
     drop_piece(color, column, targetRow);
 

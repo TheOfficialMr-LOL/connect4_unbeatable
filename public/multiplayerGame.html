@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/scripts/socket_manager_script.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Connect 4 Game</title>
+    <link href="/style.css" rel="stylesheet">
+</head>
+
+<body onload="position_UI();">
+
+    <div id="title"><u>Connect 4 Multiplayer</u></div><br><br>
+
+    <div id="turnTracker" style="font-weight: bold; position: absolute; font-size: 20px;"></div><br><br>
+    <button id="returnToHome" onclick="window.location.href='/index.html'">Leave session</button>
+    <button id="newGame" onclick="restart_game();">New game</button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div id="board-container">
+        <div id="mask-board" style="display: block;"></div>
+        <div id="board"></div>
+            <!-- Clicker overlays will go here -->
+    </div>
+    <br>
+    <div id="winningMessage" style="text-align: center; font-size: 20px; font-weight: bold;">Hello</div>
+    <div id="optionsBar">
+        <div style="font-size: 20px;" id="player1">Player 1: 🔵</div>
+        <div style="font-size: 20px;" id="player2">Player 2: 🟠</div>
+    </div>
+
+    <div id="waitingScreenContainer">
+
+        <div class="waiting-screen" id="waitingScreenStartGame"><!--delete style later!-->
+            <p style="text-align: center;">Waiting for second player...</p>
+            <p style="font-size: 15px;">Tip: invite your friend by sharing this link!</p>
+            <div class="tooltip-onclick" id="copyTooltip">Link copied!</div>
+            <button id="returnToHome" onclick="link();" style="font-size: 10px; transform: translate(-47px, -13px)" aria-label="Share this page">🔗 copy link</button>
+            <br>
+            <button id="returnToHome" onclick="window.location.href='/index.html'" style="transform: translateX(-50%);">Leave session</button>
+        </div>
+
+        <div id="waitingScreenUsernameCheck" class="waiting-screen">
+            <br>
+            <label for="usernameInput" style="display: block; margin-bottom: 8px; font-weight: 600; color: #19118c; font-size: 20px; text-align: center;">Enter your username:</label>
+			<input type="text" id="usernameInput" placeholder="Username"/>
+			<p id="errorMessage" style="color: red; font-size: 12px; margin: 0 0 8px 0;">The username must not be empty</p>
+			<button style="width: 200px; font-size: 15px; transform: translateY(10px);" onclick="check_username();" id="submitButton">Start Game</button>
+        </div>
+
+        <div class="waiting-screen" id="waitingMessageContainer">
+            <br>
+            <p id="waitingMessage" style="font-size: 15px;"></p>
+            <button id="returnToHome" onclick="window.location.href='/index.html'" style="transform: translateX(-50%);">Leave session</button>
+        </div>
+    </div>
+    
+<script>
+
+function position_UI() {
+
+    const board = document.getElementById("board-container");
+    const boardWidth = board.offsetWidth;
+    const boardLeft = board.getBoundingClientRect().left;
+    const boardRight = board.getBoundingClientRect().right;
+
+    const turnTracker = document.getElementById("turnTracker");
+    turnTracker.style.left = `${boardLeft+1}px`;
+    turnTracker.style.fontSize = `${boardWidth*0.04}px`;
+
+    const returnToHome = document.getElementById("returnToHome");
+    returnToHome.style.left = `${boardLeft+1}px`;
+    returnToHome.style.fontSize = `${boardWidth*0.03}px`;
+
+    const newGame = document.getElementById("newGame");
+    newGame.style.left = `${boardRight - newGame.offsetWidth}px`
+    newGame.style.fontSize = `${boardWidth*0.03}px`;
+}
+window.addEventListener('resize', position_UI);
+
+
+
+function link() {
+    const url = window.location.href;
+    const copyTooltip = document.getElementById("copyTooltip");
+
+    navigator.clipboard.writeText(url).then(() => {
+    //show tooltip
+    copyTooltip.classList.add("show");
+
+    //hide tooltip after 2 seconds
+    setTimeout(() => {
+        copyTooltip.classList.remove("show");
+    }, 2000);
+    }).catch(err => {
+        document.getElementById("tooltip-onclick").innerHTML = "Failed to copy link.";
+    });
+}
+
+</script>
+</body>
+<footer>
+<a href="https://github.com/TheOfficialMr-LOL/connect4_unbeatable" target="_blank" rel="noopener noreferrer">
+    © 2025 Connect 4 AI Project
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub" />
+</a>
+</footer>
+<br>
+<br>
+<br>
+</html>

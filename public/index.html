@@ -79,6 +79,43 @@
         filter: invert(100%);
     }
     footer a:hover {color: white;}
+
+	#onlineGameContainer {
+		width: 100vw;
+		height: 100vh;
+		background-color: rgba(0, 0, 0, 0.253);
+		position: fixed;
+		z-index: 100;
+		display: none;
+		align-items: center;
+		justify-content: center;
+	}
+
+	#sessionLink {
+		width: 300px;
+		height: 200px;
+		background-color: aliceblue;
+		border-radius: 10px;
+		padding: 20px;
+		box-shadow: 0 0 10px rgba(0,0,0,0.3);
+		text-align: center;
+		font-size: 18px;
+		font-weight: 600;
+		color: #19118c;
+	}
+
+	#sessionLink input[type="text"] {
+		width: 80%;
+		padding: 8px 10px;
+		margin: 10px 0;
+		font-size: 16px;
+		border: 1.5px solid #19118c;
+		border-radius: 5px;
+		outline: none;
+		box-sizing: border-box;
+	}
+
+	#errorMessage {display: none;}
   </style>
 </head>
 
@@ -89,10 +126,23 @@
 
     <div class="button-container">
         <button class="home-button" onclick="window.location.href='/computerAlgorithm.html'">Computer vs Player</button>
-        <button class="home-button" onclick="window.location.href='/localGame.html'">Player vs Player</button>
+        <button class="home-button" onclick="window.location.href='/localGame.html'">Local Game</button>
+        <button class="home-button" onclick="document.getElementById('onlineGameContainer').style.display = 'flex';">Online Multiplayer</button>
         <button class="home-button" onclick="window.location.href='https://en.wikipedia.org/wiki/Connect_Four'" target="_blank">Learn the Rules</button>
         <button class="home-button" onclick="window.location.href='/algorithm.html'" target="_blank">Learn the Algorithm</button>
     </div>
+
+	<div id="onlineGameContainer">
+		<div id="sessionLink">
+			<p style="color: #19118c; font-weight: bold;">Generate session</p>
+			<label for="usernameInput" style="display: block; margin-bottom: 8px; font-weight: 600; color: #19118c; transform: translateX(-35px); font-size: 15px;">Enter your username:</label>
+			<input type="text" id="usernameInput" placeholder="Username" style="transform: translateY(-10px);"/>
+			<p id="errorMessage" style="color: red; font-size: 12px; margin: 0 0 8px 0; margin-top: -10px;">The username must not be empty</p>
+			<button class="home-button" style="width: 200px; font-size: 15px; padding: 10px 0;" onclick="generate_link();" id="submitButton">Generate link</button>
+		</div>
+	</div>
+
+
 
     <footer>
         <div id="copyright">
@@ -109,4 +159,47 @@
 
 
 </body>
+
+<script>
+function generate_link() {
+	let username = document.getElementById("usernameInput").value;
+	console.log(username);
+	if (username.trim() !== "") {
+		document.getElementById("errorMessage").style.display = "none";
+		document.getElementById("submitButton").innerHTML = "Generating link..."
+
+		//generate link
+		send_session_request(username);
+	}
+	else {
+		document.getElementById("errorMessage").style.display = "block";
+	}
+
+}
+
+function send_session_request(username) {
+  fetch(`/create?username=${encodeURIComponent(username)}`)
+	.then(response => {
+		if (!response.ok) throw new Error('Failed to create session');
+		return response.json();
+	})
+	.then(data => {
+		console.log('New game session created:', data);
+		//store playerID locally for reconnects and tracking
+    localStorage.setItem('playerID', data.playerID);
+		localStorage.setItem('username', username);
+		localStorage.setItem("lastGameID", data.gameID);
+		window.location.href = data.joinUrl;
+	})
+	.catch(err => {
+		console.error('Error creating game session:', err);
+
+		//handle error
+		document.getElementById("submitButton").innerHTML = "Generate link";
+		document.getElementById("errorMessage").innerHTML = "Failed to generate session. Please try again.";
+		document.getElementById("errorMessage").style.display = "block";
+	});
+}
+
+</script>
 </html>

@@ -212,3 +212,127 @@ footer img {
 	vertical-align: middle;
 	margin-left: 8px;
 }
+
+
+
+
+#waitingScreenContainer {
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.253);
+	position: fixed;
+	z-index: 100;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  flex-direction: column;
+	top: 0;
+	left: 0;
+}
+
+
+#waitingScreenUsernameCheck {display: none;}
+#waitingMessageContainer {display: none; }
+
+
+.waiting-screen {
+  width: 300px;
+	height: 200px;
+	background-color: aliceblue;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.3);
+	text-align: center;
+	font-size: 20px;
+	font-weight: 600;
+	color: #19118c;
+  position: relative;
+}
+
+
+
+#submitButton {
+	font-family: 'Poppins', sans-serif;
+	font-size: 10px;
+	font-weight: 600;
+	background-color: #19118c;
+	color: white;
+	border: none;
+	border-radius: 10px;
+	padding: 12px 28px;
+	cursor: pointer;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+	transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#errorMessage {display: none;}
+
+
+
+#usernameInput {
+  width: 80%;
+  padding: 8px 10px;
+  margin: 10px 0;
+  font-size: 16px;
+  border: 1.5px solid #19118c;
+  border-radius: 5px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+
+
+.tooltip-onclick {
+  position: absolute;
+  top: 140px;
+  left: 80%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 6px 10px;
+  font-size: 10px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  z-index: 20;
+
+}
+
+.tooltip-onclick.show {
+  opacity: 1;
+}
+
+.tooltip-onclick::before {
+  content: "";
+  position: absolute;
+  left: -10px; /* Adjust as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent #333 transparent transparent;
+  /* triangle points left, color matches tooltip background */
+}
+
+
+
+
+#newGame {
+  font-family: 'Poppins', sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	background-color: #19118c;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	padding: 8px 16px;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+	transform: translateX(0px);
+	position: absolute;
+}
+
+#newGame:hover {background-color: #4468ab; transform: scale(1.05);}

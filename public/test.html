@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Share Page on Mobile</title>
+  <style>
+    #shareBtn {
+      padding: 10px 16px;
+      font-size: 16px;
+      background-color: #0191b2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Share This Page</h2>
+  <button id="shareBtn">🔗 Share</button>
+
+  <script>
+    const shareBtn = document.getElementById("shareBtn");
+
+    shareBtn.addEventListener("click", async () => {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: document.title,
+            text: "Check out this page!",
+            url: window.location.href,
+          });
+        } catch (err) {
+          console.error("Share failed:", err);
+        }
+      } else {
+        alert("Your browser doesn't support the native sharing feature.");
+      }
+    });
+  </script>
+
+</body>
+</html>
