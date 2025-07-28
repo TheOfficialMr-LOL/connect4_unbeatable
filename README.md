@@ -3,4 +3,4 @@ Hello! This web app was initially designed to only serve as an interface for the
 Soon to be deployed
 
 
-Future update: The core algorithm will be published soon, but, for now, the 'Learn the Algorithm' page is currently a W.I.P
+Future update: The core algorithm will be published soon, but, for now, the 'Learn the Algorithm' page is currently a work in progress.
