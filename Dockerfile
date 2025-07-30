@@ -12,10 +12,10 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
-#copy everything else (including your C++ executable)
+#copy everything else (including C++ executable)
 COPY . .
 
-#make sure your C++ executable is runnable (adjust name)
+#make sure C++ executable is runnable
 RUN chmod +x ./public/scripts/webMinimax.exe
 
 #expose app port
