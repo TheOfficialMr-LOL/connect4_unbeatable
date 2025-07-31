@@ -5,4 +5,4 @@ Link to site: https://connect4-arena.azurewebsites.net/
 
 Future update: The core algorithm will be published soon, but, for now, the 'Learn the Algorithm' page is currently a work in progress.
 
-Core AI algorithm comprises bitboards, dynamic scoring, and the minimax algorithm.
+Core AI algorithm is composed of bitboards, dynamic scoring, and the minimax algorithm.
