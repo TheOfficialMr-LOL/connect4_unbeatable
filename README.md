@@ -9,7 +9,7 @@ Core AI algorithm is composed of bitboards, dynamic scoring, and the minimax alg
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 ![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2b%2b&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
