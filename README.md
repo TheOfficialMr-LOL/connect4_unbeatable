@@ -7,6 +7,8 @@ Future update: The core algorithm will be published soon, but, for now, the 'Lea
 
 Core AI algorithm is composed of bitboards, dynamic scoring, and the minimax algorithm.
 
+© 2025 TheOfficialMr_LOL. All rights reserved.
+
 ---
 
 ## Tech Stack
